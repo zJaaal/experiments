@@ -1,0 +1,22 @@
+{
+  "name": "experiments",
+  "version": "1.0.0",
+  "description": "Just messing around with JS",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zJaaal/experiments.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zJaaal/experiments/issues"
+  },
+  "homepage": "https://github.com/zJaaal/experiments#readme",
+  "dependencies": {
+    "node-fetch": "^3.2.10",
+    "nodemon": "^2.0.20"
+  }
+}
