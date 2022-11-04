@@ -17,7 +17,6 @@ function SchemaBuilder() {
     required: false,
     regex: undefined,
     validate: undefined,
-    constrains: [],
   };
 
   this.execute = (value, key) => {
@@ -36,10 +35,7 @@ function SchemaBuilder() {
       };
 
       Object.keys(schema).forEach((key) => {
-        if (
-          typeof value[key] == "undefined" &&
-          schema[key]._schema.constrains.includes("required")
-        ) {
+        if (typeof value[key] == "undefined" && schema[key]._schema.required) {
           objectErrors._notValid = true;
 
           objectErrors[key] = [];
@@ -116,7 +112,6 @@ SchemaBuilder.prototype.min = function (int) {
   if (typeof this._schema.type == "undefined")
     throw new Error("Please set a type first");
 
-  this._schema.constrains.push("min");
   this._schema.min = int;
   return this;
 };
@@ -124,7 +119,6 @@ SchemaBuilder.prototype.max = function (int) {
   if (typeof this._schema.type == "undefined")
     throw new Error("Please set a type first");
 
-  this._schema.constrains.push("max");
   this._schema.max = int;
   return this;
 };
@@ -132,7 +126,6 @@ SchemaBuilder.prototype.required = function () {
   if (typeof this._schema.type == "undefined")
     throw new Error("Please set a type first");
 
-  this._schema.constrains.push("required");
   this._schema.required = true;
 
   return this;
@@ -142,7 +135,6 @@ SchemaBuilder.prototype.test = function (regex) {
   if (typeof this._schema.type == "undefined")
     throw new Error("Please set a type first");
 
-  this._schema.constrains.push("regex");
   this._schema.regex = regex;
   return this;
 };
@@ -151,7 +143,6 @@ SchemaBuilder.prototype.validate = function (callback) {
   if (typeof this._schema.type == "undefined")
     throw new Error("Please set a type first");
 
-  this._schema.constrains.push("validate");
   this._schema.validate = callback;
   return this;
 };
