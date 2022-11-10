@@ -12,6 +12,15 @@ function number() {
     if (typeof value != "number") this.errors.push(`${value} is not a number`);
 
     if (
+      typeof this._schema.max != "undefined" &&
+      typeof this._schema.min != "undefined" &&
+      this._schema.max < this._schema.min
+    )
+      throw new Error(
+        `max value: ${this._schema.max} is less than min value: ${this._schema.min}`
+      );
+
+    if (
       (this._schema.required && typeof value == "undefined") ||
       typeof value == "null"
     )
