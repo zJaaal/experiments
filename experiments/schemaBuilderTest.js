@@ -13,7 +13,7 @@ const Jal = {
     country: "Argentina",
   },
 };
-const jalValidator = schemaBuilder.object({
+const JalSchema = schemaBuilder.object({
   name: schemaBuilder.string().min(3).max(8).regex(/^J/).required(),
 
   lastName: schemaBuilder.string().min(4).max(7).required(),
@@ -30,4 +30,4 @@ const jalValidator = schemaBuilder.object({
   }),
 });
 
-console.log(jalValidator.execute(Jal));
+console.log(JalSchema.execute(Jal));
