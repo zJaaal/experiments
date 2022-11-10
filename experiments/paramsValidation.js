@@ -3,7 +3,7 @@ console.clear();
 //This just validates the params of the function before you execute it
 //It doesn't support "types" but, implementing the schemaBuilder here, it could indeed support "types"
 
-//So you would add your "Type" and it's Schema
+//So you would add your "Type" and its Schema
 
 function paramsValidator(callback) {
   let possibleTypes = ["boolean", "string", "number", "array"];
