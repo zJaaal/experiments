@@ -14,7 +14,13 @@ const Jal = {
   },
 };
 const JalSchema = schemaBuilder.object({
-  name: schemaBuilder.string().min(3).max(8).regex(/^J/).required(),
+  name: schemaBuilder
+    .string()
+    .min(3)
+    .max(8)
+    .regex(/^J/)
+    .validate((name) => name.includes("son"))
+    .required(),
 
   lastName: schemaBuilder.string().min(4).max(7).required(),
 
