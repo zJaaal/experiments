@@ -11,8 +11,6 @@ function object(schema) {
     Object.keys(this._schema).forEach((key) => {
       let result = this._schema[key].execute(value[key]);
 
-      console.log(result);
-
       if (
         Array.isArray(result) ||
         (typeof result.isValid != "undefined" && !result.isValid)
