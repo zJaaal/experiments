@@ -9,7 +9,7 @@ function number() {
   };
 
   this.execute = function (value) {
-    if (typeof value != "number") this.errors.push(`${value} is not a number`);
+    if (typeof value != "number") return [`${value} is not a number`];
 
     if (
       typeof this._schema.max != "undefined" &&

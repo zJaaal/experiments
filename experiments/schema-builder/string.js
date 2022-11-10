@@ -10,7 +10,7 @@ function string() {
   };
 
   this.execute = function (value) {
-    if (typeof value != "string") this.errors.push(`${value} is not a string`);
+    if (typeof value != "string") return [`${value} is not a string`];
 
     if (
       typeof this._schema.max != "undefined" &&

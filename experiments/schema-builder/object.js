@@ -6,21 +6,18 @@ function object(schema) {
   this.execute = function (value) {
     if (typeof value != "object") throw new Error(`${value} is not an object`);
 
-    let errorsObject = { isValid: true };
+    let errorsObject = { _notValid: false };
 
     Object.keys(this._schema).forEach((key) => {
       let result = this._schema[key].execute(value[key]);
 
-      if (
-        Array.isArray(result) ||
-        (typeof result.isValid != "undefined" && !result.isValid)
-      ) {
-        errorsObject.isValid = false;
+      if (Array.isArray(result) || result._notValid) {
+        errorsObject._notValid = true;
         errorsObject[key] = result;
       }
     });
 
-    return errorsObject.isValid ? value : errorsObject;
+    return errorsObject._notValid ? errorsObject : value;
   };
 
   return this;

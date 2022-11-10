@@ -6,8 +6,7 @@ function boolean() {
   };
 
   this.execute = function (value) {
-    if (typeof value != "boolean")
-      this.errors.push(`${value} is not a boolean`);
+    if (typeof value != "boolean") return [`${value} is not a boolean`];
 
     if (
       this._schema.required &&
