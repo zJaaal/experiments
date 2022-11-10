@@ -59,5 +59,5 @@ const sumWithValidation = new paramsValidator(sumWithoutValidation)
 
 console.log(sumWithValidation(2, 3, 4, 5, 6, 7, 8, 9, 10, 4));
 console.log(
-  new paramsValidator((lol) => lol).addParam("string").create()("hello World")
+  new paramsValidator((x) => x).addParam("string").create()("hello World")
 );
