@@ -21,8 +21,8 @@ function number() {
       );
 
     if (
-      (this._schema.required && typeof value == "undefined") ||
-      typeof value == "null"
+      this._schema.required &&
+      (typeof value == "undefined" || typeof value == "null")
     )
       this.errors.push("Field is required");
 
