@@ -28,15 +28,10 @@ function paramsValidator(callback) {
           typeof typesArray[i] == "undefined"
             ? typesArray[typesLength - 1]
             : typesArray[i];
-
-        if (currentType == "array" && !Array.isArray(param)) {
-          throw new Error(
-            `Parameter number ${
-              i + 1
-            } has the wrong type, recieved "${typeof param}" expected "${currentType}"`
-          );
-        }
-        if (currentType != "array" && typeof param != currentType)
+        if (
+          (currentType == "array" && !Array.isArray(param)) ||
+          (currentType != "array" && typeof param != currentType)
+        )
           throw new Error(
             `Parameter number ${
               i + 1
