@@ -12,9 +12,7 @@ export class TemplateBuilder {
     this._tag = `<${tag}`;
     this._selfClosingFlag = selfClosing[tag];
 
-    if (this._selfClosingFlag) {
-      this._closing = "/>";
-    } else this._closing = `</${tag}>`;
+    this._closing = this._selfClosingFlag ? "/>" : `</${tag}>`;
 
     return this;
   }
@@ -25,16 +23,16 @@ export class TemplateBuilder {
   }
 
   addContent(content) {
-    if (this._selfClosingFlag)
-      return console.warn("Cannot add content to a self closing tag"), this;
-    this._content += content;
+    this._selfClosingFlag
+      ? console.warn("Cannot add content to a self closing tag")
+      : (this._content += content);
 
     return this;
   }
 
-  create(ident) {
-    if (this._selfClosingFlag) return `${this._tag} ${this._props.join(" ")} ${this._closing}`;
-
-    return `${this._tag} ${this._props.join(" ")}>${this._content}${this._closing}`;
+  create() {
+    return this._selfClosingFlag
+      ? `${this._tag} ${this._props.join(" ")} ${this._closing}`
+      : `${this._tag} ${this._props.join(" ")}>${this._content}${this._closing}`;
   }
 }
