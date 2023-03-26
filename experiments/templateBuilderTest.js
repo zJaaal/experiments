@@ -2,13 +2,13 @@ import { templateBuilder } from "./template-builder/index.js";
 
 console.log(
   templateBuilder()
-    .createTag("a")
-    .addProp("href", "https://google.com")
-    .addContent(
+    .tag("a")
+    .prop("href", "https://google.com")
+    .content(
       templateBuilder()
-        .createTag("p")
-        .addProp("class", "text-lg text-grey text-align-right")
-        .addContent("Google is boring")
+        .tag("p")
+        .prop("class", "text-lg text-grey text-align-right")
+        .content("Google is boring")
         .build()
     )
     .build()
@@ -23,10 +23,10 @@ console.log(
 
 console.log(
   templateBuilder()
-    .createTag("img")
-    .addProp("src", "myImage.png")
-    .addProp("class", "repeat center")
-    .addContent("cannot add content so some warning should show")
+    .tag("img")
+    .prop("src", "myImage.png")
+    .prop("class", "repeat center")
+    .content("cannot add content so some warning should show")
     .build()
 );
 
@@ -34,13 +34,13 @@ console.log(
 
 console.log(
   templateBuilder()
-    .createTag("aside")
-    .addProp("class", "d-flex flex-col")
-    .addContent(
+    .tag("aside")
+    .prop("class", "d-flex flex-col")
+    .content(
       templateBuilder()
-        .createTag("p")
-        .addProp("class", "flex-grow mb-2")
-        .addContent("This is the content")
+        .tag("p")
+        .prop("class", "flex-grow mb-2")
+        .content("This is the content")
         .build(),
       3
     )

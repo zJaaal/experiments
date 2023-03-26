@@ -13,7 +13,7 @@ export class TemplateBuilder {
    * @param {string} tag string representing the tag
    * @returns {TemplateBuilder} builder
    */
-  createTag(tag) {
+  tag(tag) {
     this._tag = `<${tag}`;
     this._selfClosingFlag = selfClosing[tag];
 
@@ -28,8 +28,8 @@ export class TemplateBuilder {
    * @param {string} value Value of the property
    * @returns {TemplateBuilder} builder
    */
-  addProp(prop, value) {
-    if (!this._tag.length) throw new Error("Please initialize the builder using createTag method");
+  prop(prop, value) {
+    if (!this._tag.length) throw new Error("Please initialize the builder using tag method");
 
     this._props.push(`${prop}="${value}"`);
     return this;
@@ -41,8 +41,8 @@ export class TemplateBuilder {
    * @param {number} quantity Number of times it repeats
    * @returns {TemplateBuilder} builder
    */
-  addContent(content, quantity = 1) {
-    if (!this._tag.length) throw new Error("Please initialize the builder using createTag method");
+  content(content, quantity = 1) {
+    if (!this._tag.length) throw new Error("Please initialize the builder using tag method");
 
     this._selfClosingFlag
       ? console.warn("Cannot add content to a self closing tag")
@@ -56,7 +56,7 @@ export class TemplateBuilder {
    * @returns {string} template
    */
   build() {
-    if (!this._tag.length) throw new Error("Please initialize the builder using createTag method");
+    if (!this._tag.length) throw new Error("Please initialize the builder using tag method");
 
     return this._selfClosingFlag
       ? `${this._tag} ${this._props.join(" ")} ${this._closing}`
