@@ -9,9 +9,9 @@ console.log(
         .createTag("p")
         .addProp("class", "text-lg text-grey text-align-right")
         .addContent("Google is boring")
-        .create()
+        .build()
     )
-    .create()
+    .build()
 );
 
 /* <a href="https://google.com">
@@ -27,7 +27,30 @@ console.log(
     .addProp("src", "myImage.png")
     .addProp("class", "repeat center")
     .addContent("cannot add content so some warning should show")
-    .create()
+    .build()
 );
 
 /* <img src="myImage.png" class="some classes lmao center" /> */
+
+console.log(
+  templateBuilder()
+    .createTag("aside")
+    .addProp("class", "d-flex flex-col")
+    .addContent(
+      templateBuilder()
+        .createTag("p")
+        .addProp("class", "flex-grow mb-2")
+        .addContent("This is the content")
+        .build(),
+      3
+    )
+    .build()
+);
+
+/*
+<aside class="d-flex flex-col">
+  <p class="flex-grow mb-2">This is the content</p>
+  <p class="flex-grow mb-2">This is the content</p>
+  <p class="flex-grow mb-2">This is the content</p>
+</aside>
+*/
