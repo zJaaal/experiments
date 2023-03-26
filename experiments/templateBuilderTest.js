@@ -15,7 +15,7 @@ console.log(
 );
 
 /* <a href="https://google.com">
-    <p class="p-paragraph p-grey text-align">
+    <p class="text-lg text-grey text-align-right">
       Google is boring
     </p>
   </a>
@@ -30,7 +30,7 @@ console.log(
     .build()
 );
 
-/* <img src="myImage.png" class="some classes lmao center" /> */
+/* <img src="myImage.png" class="repeat center" /> */
 
 console.log(
   templateBuilder()
