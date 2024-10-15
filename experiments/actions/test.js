@@ -42,7 +42,7 @@ const withChainedFallback = new Action()
     );
 
 const asyncChainedActions = new AsyncAction()
-    .define(async (name) => {
+    .define((name) => {
         console.log(`Hello, ${name}!\n`);
 
         const rl = readline.createInterface({
@@ -65,7 +65,7 @@ const asyncChainedActions = new AsyncAction()
                 };
             })
             .chain((action) =>
-                action.define(async ({ number, color }) => {
+                action.define(({ number, color }) => {
                     for (let i = 0; i < number; i++) {
                         console.log(`You love ${color} x ${i + 1}`);
                     }
