@@ -50,22 +50,13 @@ const asyncChainedActions = new AsyncAction()
             output: process.stdout
         });
 
-        const color = await rl.question('What is your favorite color?\n');
-
-        rl.close();
-
-        return color;
+        return rl;
     })
     .chain((action) =>
         action
-            .define(async (color) => {
-                const rl = readline.createInterface({
-                    input: process.stdin,
-                    output: process.stdout
-                });
-
+            .define(async (rl) => {
                 const number = await rl.question('What is your favorite number?\n');
-
+                const color = await rl.question('What is your favorite color?\n');
                 rl.close();
 
                 return {
@@ -76,7 +67,7 @@ const asyncChainedActions = new AsyncAction()
             .chain((action) =>
                 action.define(async ({ number, color }) => {
                     for (let i = 0; i < number; i++) {
-                        console.log('You love ' + color);
+                        console.log(`You love ${color} x ${i + 1}`);
                     }
 
                     return 'Thank you for answering!';
