@@ -75,11 +75,29 @@ const asyncChainedActions = new AsyncAction()
             )
     );
 
+const testCode = new Action()
+    .define(({ value, expected, name }) => {
+        if (value === expected) {
+            console.log(`${name} passed!`);
+        } else {
+            throw new Error('Test failed!');
+        }
+    })
+    .fallback((e, { value, expected }) => {
+        console.error(`${e}\n${value} is not equal to ${expected}`);
+    });
+
 console.log(simpleSum.trigger([1, 2, 3, 4, 5]));
 console.log('--------------------');
 console.log(plusTwoPlusThree.trigger(1));
 console.log('--------------------');
 console.log(withFallback.trigger());
+console.log('--------------------');
+testCode.trigger({
+    value: Number(Math.random() > 0.5),
+    expected: 1,
+    name: 'One should be equal to one'
+});
 console.log('--------------------');
 for (let i = 1; i < 6; i++) {
     console.log(withChainedFallback.trigger({ name: 'John Doe #' + i }));
